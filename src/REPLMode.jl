@@ -376,7 +376,7 @@ end
 #############
 function do_cmd(repl::REPL.AbstractREPL, input::String; do_rethrow=false)
     try
-        statements = parse(input)
+        statements = parse(replace(input, "," => " "))
         commands   = map(Command, statements)
         for command in commands
             do_cmd!(command, repl)
